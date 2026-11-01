@@ -1,0 +1,14 @@
+iorgian_core_keys_me:
+    path: /iorgian/keys/me
+    defaults: { _controller: iorgian.core.controller.keys:me }
+    methods: [GET]
+
+iorgian_core_keys_public:
+    path: /iorgian/keys/public
+    defaults: { _controller: iorgian.core.controller.keys:public_keys }
+    methods: [GET]
+
+iorgian_core_keys_store:
+    path: /iorgian/keys/save
+    defaults: { _controller: iorgian.core.controller.keys:store }
+    methods: [POST]

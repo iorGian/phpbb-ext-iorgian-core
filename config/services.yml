@@ -1,0 +1,94 @@
+parameters:
+    iorgian.core.tables.user_keys: '%core.table_prefix%iorgian_user_keys'
+
+services:
+    iorgian.core.compat:
+        class: iorgian\core\service\compat
+        arguments:
+            - '@config'
+
+    iorgian.core.acl:
+        class: iorgian\core\permission\acl_helper
+        arguments:
+            - '@auth'
+            - '@dbal.conn'
+            - '@user'
+            - '%core.table_prefix%'
+
+    iorgian.core.colors:
+        class: iorgian\core\util\colors
+
+    iorgian.core.color_field:
+        class: iorgian\core\util\color_field
+        arguments:
+            - '@iorgian.core.colors'
+            - '@language'
+
+    iorgian.core.badge:
+        class: iorgian\core\util\badge
+        arguments:
+            - '@iorgian.core.colors'
+
+    iorgian.core.forums:
+        class: iorgian\core\util\forums
+        arguments:
+            - '@dbal.conn'
+
+    iorgian.core.groups:
+        class: iorgian\core\util\groups
+        arguments:
+            - '@dbal.conn'
+            - '@group_helper'
+
+    iorgian.core.ordering:
+        class: iorgian\core\util\ordering
+        arguments:
+            - '@dbal.conn'
+
+    iorgian.core.keys:
+        class: iorgian\core\service\keys
+        arguments:
+            - '@dbal.conn'
+            - '%iorgian.core.tables.user_keys%'
+
+    iorgian.core.envelope:
+        class: iorgian\core\service\envelope
+
+    iorgian.core.controller.keys:
+        class: iorgian\core\controller\keys
+        arguments:
+            - '@iorgian.core.keys'
+            - '@user'
+            - '@request'
+
+    iorgian.core.listener:
+        class: iorgian\core\event\listener
+        arguments:
+            - '@iorgian.core.keys'
+        tags:
+            - { name: event.listener }
+
+    iorgian.core.acp_helper:
+        class: iorgian\core\service\acp_helper
+        arguments:
+            - '@request'
+
+    iorgian.core.position:
+        class: iorgian\core\util\position
+
+    iorgian.core.sort_params:
+        class: iorgian\core\util\sort_params
+        arguments:
+            - '@request'
+
+    iorgian.core.range_help:
+        class: iorgian\core\util\range_help
+        arguments:
+            - '@language'
+
+    iorgian.core.topics_listener:
+        class: iorgian\core\event\topics_listener
+        arguments:
+            - '@dispatcher'
+        tags:
+            - { name: event.listener }
