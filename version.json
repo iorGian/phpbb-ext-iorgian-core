@@ -1,0 +1,12 @@
+{
+	"stable": {},
+	"unstable": {
+		"0.3": {
+			"current": "0.3.0-a1",
+			"download": "https://github.com/iorGian/phpbb-ext-iorgian-core/releases/tag/v0.3.0-a1",
+			"announcement": "https://github.com/iorGian/phpbb-ext-iorgian-core/releases/tag/v0.3.0-a1",
+			"eol": null,
+			"security": false
+		}
+	}
+}

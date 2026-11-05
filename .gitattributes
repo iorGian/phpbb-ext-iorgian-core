@@ -1,2 +1,5 @@
 .gitignore export-ignore
 .gitattributes export-ignore
+
+.github export-ignore
+version.json export-ignore
